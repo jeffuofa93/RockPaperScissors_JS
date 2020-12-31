@@ -1,11 +1,11 @@
-// This program creates a rock paper scissors game
+// This program creates a Rock paper scissors game
 
 // return the move
 function getRndInteger(max) {
     return Math.floor((Math.random() * max)+1);
   }
 function computerPlay(){
-    let moveArr = ["rock","paper","scissors"];
+    let moveArr = ["Rock","paper","scissors"];
     let num = getRndInteger(2);
     return moveArr[num];
 }
@@ -13,21 +13,22 @@ function computerPlay(){
 
 function playRound(playerSelection,score){
     // it's running
+    playerSelection = playerSelection.toString();
     computerSelection = computerPlay();
     if (playerSelection === computerSelection) {
         alert("Tie");
         // come back to ties
         //nextMove = computerPlay();
-        //playerselection = prompt("It's a tie enter rock paper or scissors to continue this round: ");
+        //playerselection = prompt("It's a tie enter Rock paper or scissors to continue this round: ");
         //return playRound(playerSelection,nextMove,counter++);
-    } else if ((computerSelection === "rock" && playerSelection ==="scissors")||
-        (computerSelection ==="paper" && playerSelection ==="rock")||
+    } else if ((computerSelection === "Rock" && playerSelection ==="scissors")||
+        (computerSelection ==="paper" && playerSelection ==="Rock")||
         (computerSelection==="scissors" && playerSelection ==="paper")){
             //console.log("You Lose! " + computerSelection+ " beats " + playerSelection);
             //console.log("end of inner function \n");
             score[1] ++;
             userScore.textContent = "Your Score: " + score[0];
-            computerScore.textContent = "Your Score: " + score[1];
+            computerScore.textContent = "Computer Score: " + score[1];
             content.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`
     }
     else {
@@ -57,15 +58,13 @@ const userScore = document.querySelector("#UserScore");
 const computerScore = document.querySelector("#ComputerScore");
 
 
-const rock = document.querySelector("#Rock");
-let rockID = rock.id.toLowerCase();
-//rock.addEventListener("click",playRound(rockID,score));
+const Rock = document.querySelector("#Rock");
+//Rock.addEventListener("click",playRound(RockID,score));
 
-rock.addEventListener('click',playRound(rockID,score));
+Rock.addEventListener('click',function (){
+    playRound(Rock.id,score);
+});
 
-//score = rock.addEventListener("click",playRound())
-
-// function to go through the button clicks
 
 
 
@@ -80,7 +79,7 @@ function game(){
     let displayString;
 
     for (i=0; i<5; i++){
-        let playerSelection = prompt("Enter rock paper or scissors: ");
+        let playerSelection = prompt("Enter Rock paper or scissors: ");
         let computerSelection = computerPlay();
         displayString = playRound(playerSelection,computerSelection);
         console.log(displayString);
