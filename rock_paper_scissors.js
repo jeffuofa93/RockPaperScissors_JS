@@ -1,112 +1,89 @@
-// This program creates a Rock paper scissors game
+// This program creates a Rock Paper Scissors game
 
-// return the move
+// Declare Constants
+
+// Rock Paper and Scissors are the buttons to for the user to click their move
+const Rock = document.querySelector("#Rock");
+const Paper = document.querySelector("#Paper");
+const Scissors = document.querySelector("#Scissors");
+
+// Result is the div that holds Resultstr which displays the result of each round and the final result
+const result = document.querySelector("#Result");
+const resultStr = document.createElement("div");
+
+// Score is an array that holds the score for both players computer is index 1 user is 0
+let score = [0,0];
+
+// hold the text that displays the user score and computer score
+const userScore = document.querySelector("#UserScore");
+const computerScore = document.querySelector("#ComputerScore");
+
+// Manually add the resultStr for practice with adding from js
+resultStr.classList.add("content");
+resultStr.textContent = "Select rock Paper or Scissors:";
+result.appendChild(resultStr);
+
+// generate random number
 function getRndInteger(max) {
     return Math.floor((Math.random() * max)+1);
   }
+
+// generate random computer move
 function computerPlay(){
-    let moveArr = ["Rock","paper","scissors"];
+    let moveArr = ["Rock","Paper","Scissors"];
     let num = getRndInteger(2);
     return moveArr[num];
 }
 
-
+// Play the round
 function playRound(playerSelection,score){
-    // it's running
-    playerSelection = playerSelection.toString();
+    // generate the computer choice
     computerSelection = computerPlay();
     if (playerSelection === computerSelection) {
-        alert("Tie");
-        // come back to ties
-        //nextMove = computerPlay();
-        //playerselection = prompt("It's a tie enter Rock paper or scissors to continue this round: ");
-        //return playRound(playerSelection,nextMove,counter++);
-    } else if ((computerSelection === "Rock" && playerSelection ==="scissors")||
-        (computerSelection ==="paper" && playerSelection ==="Rock")||
-        (computerSelection==="scissors" && playerSelection ==="paper")){
-            //console.log("You Lose! " + computerSelection+ " beats " + playerSelection);
-            //console.log("end of inner function \n");
+        resultStr.textContent = `It's a tie both picked ${playerSelection} select again`
+
+        // check if computer wins and update corresponding variables
+    } else if ((computerSelection === "Rock" && playerSelection ==="Scissors")||
+        (computerSelection ==="Paper" && playerSelection ==="Rock")||
+        (computerSelection==="Scissors" && playerSelection ==="Paper")){
             score[1] ++;
             userScore.textContent = "Your Score: " + score[0];
             computerScore.textContent = "Computer Score: " + score[1];
-            content.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`
+            resultStr.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`
     }
     else {
-        //console.log(`You Win! ${playerSelection} beats ${computerSelection}`);
-        //console.log("end of inner function \n");
+        // if player wins
         score[0] ++;
         userScore.textContent = "Your Score: " + score[0];
         computerScore.textContent = "Your Score: " + score[1];
-        content.textContent =  `You Win! ${playerSelection} beats ${computerSelection}`
-        //return `You Win! ${playerSelection} beats ${computerSelection}`
+        resultStr.textContent =  `You Win! ${playerSelection} beats ${computerSelection}`;
+    }
+    // check for end of game
+    if (score[0]===5 || score[1]===5){
+        if (score[0] > score[1]){
+            resultStr.textContent = "Game over. You win! Select again to restart";
+            score[0] = 0;
+            score[1] = 0;
+        }
+        else {
+            resultStr.textContent = "Game over. You Lose! Select again to restart";
+            score[0] = 0;
+            score[1] = 0;
+        }
     }
     
 }
 
 
-
-// Add div to display results of each round
-// user is first index computer is second
-let score = [0,0];
-const result = document.querySelector("#Result");
-const content = document.createElement("div");
-content.classList.add("content");
-content.textContent = "You lose";
-result.appendChild(content);
-
-const userScore = document.querySelector("#UserScore");
-const computerScore = document.querySelector("#ComputerScore");
-
-
-const Rock = document.querySelector("#Rock");
-//Rock.addEventListener("click",playRound(RockID,score));
-
+// Add event listeners for each button
 Rock.addEventListener('click',function (){
     playRound(Rock.id,score);
 });
-
-
-
-
-
-
-
-
-
-
-/*
-function game(){
-    let displayString;
-
-    for (i=0; i<5; i++){
-        let playerSelection = prompt("Enter Rock paper or scissors: ");
-        let computerSelection = computerPlay();
-        displayString = playRound(playerSelection,computerSelection);
-        console.log(displayString);
-    }
-} */
-
-/*
-function removeTransition(e) {
-    if (e.propertyName !== 'transform') return;
-    e.target.classList.remove('playing');
-  }
-
-  function playSound(e) {
-    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-    const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-    if (!audio) return;
-
-    key.classList.add('playing');
-    audio.currentTime = 0;
-    audio.play();
-  }
-
-  const keys = Array.from(document.querySelectorAll('.key'));
-  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
-  window.addEventListener('keydown', playSound);
- */
-
-
+Paper.addEventListener('click',function (){
+    playRound(Paper.id,score);
+});
+Scissors.addEventListener('click',function (){
+    playRound(Scissors.id,score);
+});
 
 // EOF comment
