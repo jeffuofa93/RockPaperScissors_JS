@@ -1,14 +1,86 @@
+<style>
+
+  .gameTitle {
+    font-style: normal;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .keys {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+
+  .key {
+    margin: 1rem;
+    font-size: 1.5rem;
+    padding: 1rem .5rem;
+    transition: all .07s ease;
+    width: 10rem;
+    text-align: center;
+    color: white;
+  }
+  #Result{
+      display: flex;
+      width: 100vw;
+      height: 50vh;
+      flex: 1;
+      font-size: 50px;
+      text-align: center;
+      color: orange;
+      justify-content: center;
+      align-items: center;
+
+  }
+
+  #Score{
+      border: .4rem solid black;
+      height: 20vh;
+      width: 50vw;
+      display: flex;
+      flex: 1;
+      margin: auto;
+      justify-content: space-around;
+      align-items: center;
+
+  }
+</style>
+
+
+
 <html>
 <head>
-  <title>Page Title</title>
+  <title>Rock Paper Scissors</title>
   <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<h1>
+  <div class="gameTitle">
+    Rock Paper Scissors Game!
+  </div>
+</h1>
 <body>
-  <script src="rock_paper_scissors.js">
-          
+<div id="Result"></div>
+<div class="keys">
+    <div class = "key"> <button class = "btnClass" id = "Rock">Rock</button></div>
+    <div class = "key"> <button class = "btnClass" id = "Paper">Paper</button></div>
+    <div class = "key"> <button class = "btnClass" id = "Scissors">Scissors</button></div>
+</div>
 
-      
 
-  </script>
+<div id ="Score">
+<div id = "UserScore">Your Score: </div>
+<div id = "ComputerScore">Computer Score: </div>
+</div>
+
 </body>
+
+
+
+
+<script src="rock_paper_scissors.js">
+
+</script>
 </html>
