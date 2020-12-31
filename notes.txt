@@ -1,3 +1,0 @@
-When the buttons are clicked it dynamically adds the CSS class playing to the object
-
-key has a property called transition that is really short to determine how long the added class stays
